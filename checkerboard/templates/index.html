@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkerboard</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</head>
+<body>
+
+    <div class="container">
+
+        {% for i in range(0, x): %}
+            <div class="row">
+
+            {% for j in range(0, y): %}
+
+                {% if i % 2 == 0 and j % 2 == 0 %}
+                    <div class="box light" style="background-color: {{light}};"></div>
+                {% elif i % 2 == 0 and j % 2 != 0 %}
+                    <div class="box dark" style="background-color: {{dark}};"></div>
+                {% elif i % 2 != 0 and j % 2 == 0 %}
+                    <div class="box dark" style="background-color: {{dark}};"></div>
+                {% elif i % 2 != 0 and j % 2 != 0 %}
+                    <div class="box light" style="background-color: {{light}};"></div>
+                {% endif %}
+
+            {% endfor %}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
