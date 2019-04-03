@@ -15,7 +15,7 @@
 
         <div class="title">
             <h1>Ninja Gold!</h1>
-            <p>The goal is to earn {{ session["wincondition"] }} gold in 10 turns.</p>
+            <p>The goal is to earn {{ session["wincondition"]["gold"] }} gold in {{ session["wincondition"]["turns"] }} turns.</p>
         </div>
 
         <div class="banner">
@@ -88,7 +88,9 @@
         <div class="activity-log">
 
             {% for entry in range(session["ledgerList"]|length-1, -1, -1) %}
-                {{ session["ledgerList"][entry]|safe }}
+                <p class="{{ session["gainList"][entry] }}">
+                    {{ session["ledgerList"][entry] }}
+                </p>
             {% endfor %}
 
         </div>
