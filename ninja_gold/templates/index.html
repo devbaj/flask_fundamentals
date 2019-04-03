@@ -15,50 +15,72 @@
 
         <div class="title">
             <h1>Ninja Gold!</h1>
+            <p>The goal is to earn {{ session["wincondition"] }} gold in 10 turns.</p>
         </div>
 
         <div class="banner">
             <p>Your Gold</p>
             <p id="balance"> {{ session["gold"] }} </p>
-            <form action="/reset" method="post">
-                <button type="submit">Reset the Game</button>
-            </form>
-            
+            <p id="counter">Turn: {{ session["counter"] }}</p>
+
+            {% if "win" in session %}
+                <form action="/reset" method="post">
+                    <button type="submit">Reset the Game</button>
+                </form>
+            {% endif %}
+
         </div>
 
         <div class="place-row">
 
-            <div class="places" id="farm">
-                <h2>Farm</h2>
-                <p>(earns 10-20 gold)</p>
-                <form action="/process_money" method="POST">
-                    <input type="hidden" name="place" value="farm">
-                    <input type="submit" value="Find Gold!" class="submit-btn">
-                </form>
-            </div>
-            <div class="places" id="cave">
-                <h2>Cave</h2>
-                <p>(earns 5-10 gold)</p>
-                <form action="/process_money" method="POST">
-                    <input type="hidden" name="place" value="cave">
-                    <input type="submit" value="Find Gold!" class="submit-btn">
-                </form>
-            </div>
-            <div class="places" id="house">
-                <h2>House</h2>
-                <p>(earns 2-5 gold)</p>
-                <form action="/process_money" method="POST">
-                    <input type="hidden" name="place" value="house">
-                    <input type="submit" value="Find Gold!" class="submit-btn">
-                </form>
-            </div>
-            <div class="places" id="casino">
-                <h2>Casino</h2>
-                <p>(earns or loses 0-50 gold)</p>
-                <form action="/process_money" method="post">
-                    <input type="hidden" name="place" value="casino">
-                    <input type="submit" value="Find Gold!" class="submit-btn">
-                </form>
+            {% if "win" in session %}
+
+                {% if session["win"] == True %}
+
+                    <h1 class="gain">YOU WON</h1>
+
+                {% else %}
+
+                    <h1 class="loss">Sorry, you lost.</h1>
+
+                {% endif %}
+
+            {% else %}
+
+                <div class="places" id="farm">
+                    <h2>Farm</h2>
+                    <p>(earns 10-20 gold)</p>
+                    <form action="/process_money" method="POST">
+                        <input type="hidden" name="place" value="farm">
+                        <input type="submit" value="Find Gold!" class="submit-btn">
+                    </form>
+                </div>
+                <div class="places" id="cave">
+                    <h2>Cave</h2>
+                    <p>(earns 5-10 gold)</p>
+                    <form action="/process_money" method="POST">
+                        <input type="hidden" name="place" value="cave">
+                        <input type="submit" value="Find Gold!" class="submit-btn">
+                    </form>
+                </div>
+                <div class="places" id="house">
+                    <h2>House</h2>
+                    <p>(earns 2-5 gold)</p>
+                    <form action="/process_money" method="POST">
+                        <input type="hidden" name="place" value="house">
+                        <input type="submit" value="Find Gold!" class="submit-btn">
+                    </form>
+                </div>
+                <div class="places" id="casino">
+                    <h2>Casino</h2>
+                    <p>(earns or loses 0-50 gold)</p>
+                    <form action="/process_money" method="post">
+                        <input type="hidden" name="place" value="casino">
+                        <input type="submit" value="Find Gold!" class="submit-btn">
+                    </form>
+                
+                {% endif %}
+
             </div>
 
         </div>
