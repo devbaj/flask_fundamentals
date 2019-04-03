@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number Game</title>
+</head>
+<body>
+    
+    <h1>Welcome to the Great Number Game!</h1>
+    <p>I am thinking of a number between 1 and 100.</p>
+    <p>Take a guess!</p>
+
+    <div class="response">
+        
+        {% if session["correct"]: %}
+            <h2> {{ session["my_num"] }} was the right number! </h2>
+            <p>It took you {{ session["counter"] }} guesses to get it.</p>
+            <form action="play-again" method="POST">
+                <button type="submit">Play Again!</button>
+            </form>
+        {% elif session["tooLow"]: %}
+            <h2>Too Low!</h2>
+        {% elif session["tooHigh"]: %}
+            <h2>Too High!</h2>
+        {% endif %}
+
+    </div>
+
+    <form action="/guess", method="POST">
+        <input type="text" name="guess" id="guess">
+        <button type="submit">Guess!</button>
+    </form>
+
+</body>
+</html>
