@@ -8,7 +8,7 @@ def index():
     if "counter" in session:
         session["counter"] += 1
     else:
-        session["counter"] = 1
+        session["counter"] = 1cd .
         session["my_num"] = random.randint(1, 100)
     return render_template("index.html")
 
