@@ -40,7 +40,8 @@ def process():
             session["ledger"] += "won " + str(change) + " gold!"
         elif change < 0:
             session["ledger"] += "lost " + str(abs(change)) + " gold!"
-    session["ledger"] += " " + str(now) + "\n"
+    session["ledger"] += " " + str(now) + "|"
+    session["ledgerList"] = session["ledger"].split("|")
     return redirect("/")
 
 
