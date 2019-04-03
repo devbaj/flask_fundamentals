@@ -11,12 +11,12 @@
 }
 .title{
     text-align: center;
-    margin: 10px auto;
+    margin: 1rem auto;
 }
 
 .banner{
-    width: 100%;
-    margin-left: 10%;
+    width: 80%;
+    margin: 0 auto;
 }
 .banner p{
     display:inline-block;
@@ -28,24 +28,39 @@ p#balance{
     padding: .2rem;
     text-align: center;
 }
-.banner form{
-    display: inline-block;
-    margin-left: 70%;
+.reset{
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
 }
-.banner form button{
+.reset p{
+    margin: 1rem auto;
+}
+.goal-set{
+    width: 5%;
+}
+.tiny{
+    font-size: 8pt;
+    font-weight: lighter
+}
+#reset-btn{
+    display: block;
+    color: white;
+    background-color: red;
     padding: .5rem 1rem;
     font-weight: bold;
-    background-color: red;
-    color: white;
     border: none;
     border-radius: 5px;
     box-shadow: 2px 2px 2px black;
+    position: relative;
+    width: 10%;
+    margin: 1rem auto;
 }
 
 .place-row{
     width: 100%;
     text-align: center;
-    margin: 2rem auto;
+    margin: 2rem;
 }
 .places{
     text-align: center;

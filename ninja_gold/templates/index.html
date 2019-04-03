@@ -23,17 +23,15 @@
             <p id="balance"> {{ session["gold"] }} </p>
             <p id="counter">Turn: {{ session["counter"] }}</p>
 
-            {% if "win" in session %}
-                <form action="/reset" method="post">
-                    <button type="submit">Reset the Game</button>
-                </form>
-            {% endif %}
+            
 
         </div>
 
-        <div class="place-row">
 
-            {% if "win" in session %}
+
+        {% if "win" in session %}
+
+            <div class="reset">
 
                 {% if session["win"] == True %}
 
@@ -45,7 +43,25 @@
 
                 {% endif %}
 
-            {% else %}
+                    {% if "win" in session %}
+
+                        <p>Too{% if session["win"] %} easy{% else %} hard{% endif %}?</p>
+                        <p>Set your own win conditions here:</p>
+                        <form action="/reset" method="post" class="reset-form">
+                            <p>Gold Goal: <span class="tiny">(default is 100)</span></p>
+                            <input type="number" name="goldGoal" class="goal-set">
+                            <p>Turns: <span class="tiny">(default is 10)</span></p>
+                            <input type="number" name="turnsGoal" class="goal-set">
+                            <button type="submit" id="reset-btn">Reset the Game</button>
+                        </form>
+
+                    {% endif %}
+
+            </div>
+
+        {% else %}
+
+            <div class="place-row">
 
                 <div class="places" id="farm">
                     <h2>Farm</h2>
@@ -78,13 +94,10 @@
                         <input type="hidden" name="place" value="casino">
                         <input type="submit" value="Find Gold!" class="submit-btn">
                     </form>
-                
-                {% endif %}
-
+                </div>
             </div>
-
-        </div>
-
+        {% endif %}
+        
         <div class="activity-log">
 
             {% for entry in range(session["ledgerList"]|length-1, -1, -1) %}

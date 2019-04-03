@@ -8,16 +8,21 @@ now = datetime.datetime.now()
 
 @app.route("/")
 def index():
-    session["wincondition"] = {
-        "turns": 10,
-        "gold": 100
-    }
+    if "wincondition" in session:
+        pass
+    else:
+        session["wincondition"] = {
+            "turns": 10,
+            "gold": 100
+        }
+    
     session["placeDict"] = {
         "farm": [10,20],
         "cave": [5, 10],
         "house": [2, 5],
         "casino": [-50, 50]
     }
+    
     if "counter" in session and session["counter"] < session["wincondition"]["turns"]:
         session["counter"] += 1
     elif "counter" in session and session["counter"] >= session["wincondition"]["turns"]:
@@ -62,6 +67,36 @@ def process():
 @app.route("/reset", methods=["POST"])
 def reset():
     session.clear()
+    
+    turnsblank = False
+    goldblank = False
+    
+    if request.form["turnsGoal"] == "" or int(request.form["turnsGoal"]) <= 0:
+        turnsblank = True
+    if request.form["goldGoal"] == "" or int(request.form["goldGoal"]) <= 0:
+        goldblank = True
+        
+    if turnsblank and goldblank:
+        session["wincondition"] = {
+            "turns": 10,
+            "gold": 100
+        }
+    elif turnsblank and goldblank != True:
+        session["wincondition"] = {
+            "turns": 10,
+            "gold": int(request.form["goldGoal"])
+        }
+    elif turnsblank != True and goldblank:
+        session["wincondition"] = {
+            "turns": int(request.form["turnsGoal"]),
+            "gold": 100
+        }
+    else:
+        session["wincondition"] = {
+            "turns": int(request.form["turnsGoal"]),
+            "gold": int(request.form["goldGoal"])
+        }
+    
     return redirect("/")
 
 
