@@ -19,29 +19,32 @@ def index():
 
 @app.route("/process_money", methods=["POST"])
 def process():
-    session["ledger"] += "Entered the "
+    session["ledger"] += "<p class='"
     if request.form["place"] == "farm":
         change = random.randint(10, 20)
         session["gold"] += change
-        session["ledger"] += "farm and earned " + str(change) + " gold!"
+        session["ledger"] += "gain'>Entered the farm and earned " + str(change) + " gold!"
     elif request.form["place"] == "cave":
         change = random.randint(5, 10)
         session["gold"] += change
-        session["ledger"] += "cave and earned " + str(change) + " gold!"
+        session["ledger"] += "gain'>Entered the cave and earned " + str(change) + " gold!"
     elif request.form["place"] == "house":
         change = random.randint(5, 10)
         session["gold"] += change
-        session["ledger"] += "house and earned " + str(change) + " gold!"
+        session["ledger"] += "gain'>Entered the house and earned " + str(change) + " gold!"
     elif request.form["place"] == "casino":
         change = random.randint(-50, 50)
         session["gold"] += change
-        session["ledger"] += "casino and "
         if change >= 0:
-            session["ledger"] += "won " + str(change) + " gold!"
+            session["ledger"] += "gain'>Entered the casino and won " + str(change) + " gold!"
         elif change < 0:
-            session["ledger"] += "lost " + str(abs(change)) + " gold!"
-    session["ledger"] += " " + str(now) + "|"
-    session["ledgerList"] = session["ledger"].split("|")
+            session["ledger"] += "loss'>Entered the casino and lost " + str(abs(change)) + " gold!"
+    session["ledger"] += " (" + str(now) + ")</p>"
+    return redirect("/")
+
+@app.route("/reset", methods=["POST"])
+def reset():
+    session.clear()
     return redirect("/")
 
 
