@@ -39,7 +39,11 @@ def process():
             session["ledger"] += "gain'>Entered the casino and won " + str(change) + " gold!"
         elif change < 0:
             session["ledger"] += "loss'>Entered the casino and lost " + str(abs(change)) + " gold!"
-    session["ledger"] += " (" + str(now) + ")</p>"
+    session["ledger"] += " (" + str(now) + ")</p>|"
+    session["ledgerList"] = session["ledger"].split("|")
+    print("*"*30)
+    print(session["ledgerList"])
+    print("*"*30)
     return redirect("/")
 
 @app.route("/reset", methods=["POST"])

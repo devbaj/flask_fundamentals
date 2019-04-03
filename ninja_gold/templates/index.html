@@ -65,7 +65,9 @@
 
         <div class="activity-log">
 
-            {{ session["ledger"]|safe }}
+            {% for entry in range(session["ledgerList"]|length-1, -1, -1) %}
+                {{ session["ledgerList"][entry]|safe }}
+            {% endfor %}
 
         </div>
 
