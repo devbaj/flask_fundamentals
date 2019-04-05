@@ -58,15 +58,15 @@ p#balance{
 }
 
 .place-row{
-    width: 100%;
+    width: 90%;
     text-align: center;
-    margin: 2rem;
+    padding: 5%
 }
 .places{
     text-align: center;
     width: 20%;
     height: 100%;
-    margin: 2%;
+    margin: 2%, 0, 2%, 0;
     border: 3px solid black;
     padding: 2% 0;
 }

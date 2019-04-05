@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, Blueprint
 import random, datetime
 
 app = Flask(__name__)
-app.secret_key = "MYA-NEE!!!"
+app.secret_key = "Hayasaka is best girl"
 
 now = datetime.datetime.now()
 
@@ -15,7 +15,6 @@ def index():
             "turns": 10,
             "gold": 100
         }
-    
     session["placeDict"] = {
         "farm": [10,20],
         "cave": [5, 10],
